@@ -44,7 +44,7 @@ jobs:
       - name: tag&push the image to docker Hub
         run: |
           docker tag maven-hello-world:${{ env.new_version }} ${{ secrets.DOCKER_USERNAME }}/maven-hello-world:${{ env.new_version }}
-          docker push ${{ secrets.DOCKER_USERNAME }}/maven-hello-world
+          docker push ${{ secrets.DOCKER_USERNAME }}/maven-hello-world:${{ env.new_version }}
 
       - name: Pull the docker image
         run: docker pull ${{ secrets.DOCKER_USERNAME }}/maven-hello-world:${{ env.new_version }}
