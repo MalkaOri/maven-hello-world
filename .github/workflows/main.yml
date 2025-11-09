@@ -24,6 +24,7 @@ jobs:
         run: |
           version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
           new_version=$(echo ${version} |  awk -F'.' '{print $1"."$2"."$3+1}' |  sed s/[.]$//)
+          echo $new_version >> $GITHUB_ENV
 
       - name: update jar version to next patch
         run: mvn versions:set -DnewVersion=$new_version
@@ -32,7 +33,7 @@ jobs:
         run: mvn -B package --file pom.xml
 
       - name: Build the project image using DOCKERFILE
-        run: docker build -t maven-hello-world:1.0.1 . --build-arg version=1.0.1
+        run: docker build -t maven-hello-world:${{ env.new_version }} . --build-arg version=${{ env.new_version }}
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
