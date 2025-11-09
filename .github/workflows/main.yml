@@ -10,9 +10,9 @@ jobs:
       - name: Set up JRE 17
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
-          distribution: 'openJDK' 
-          java-package: 'JRE'
+          java-version: 17
+          distribution: tamurin 
+          java-package: JRE
           cache: maven
       - name: Export the new jar version
         run: |
