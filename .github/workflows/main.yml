@@ -27,7 +27,7 @@ jobs:
           echo "new_version=$(echo ${version} |  awk -F'.' '{print $1"."$2"."$3+1}' |  sed s/[.]$//)" >> "$GITHUB_ENV"
 
       - name: update jar version to next patch
-        run: mvn versions:set -DnewVersion=$new_version
+        run: mvn versions:set -DnewVersion=${{ env.new_version }}
 
       - name: Build the project
         run: mvn -B package --file pom.xml
@@ -46,7 +46,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/maven-hello-world:$new_version
+          tags: ${{ secrets.DOCKER_USERNAME }}/maven-hello-world:${{ env.new_version }}
 
       - name: Pull the docker image
-        run: docker pull ${{ secrets.DOCKER_USERNAME }}/maven-hello-world:$new_version
+        run: docker pull ${{ secrets.DOCKER_USERNAME }}/maven-hello-world:${{ env.new_version }}
