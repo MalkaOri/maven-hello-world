@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "deploy.fullname" . }}
+spec:
+  template:
+    spec:
+      containers:
+        - name: Hello-world-container
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
