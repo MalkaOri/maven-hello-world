@@ -24,7 +24,7 @@ jobs:
         run: |
           version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
           new_version=$(echo ${version} |  awk -F'.' '{print $1"."$2"."$3+1}' |  sed s/[.]$//)
-          echo $new_version >> $GITHUB_ENV
+          echo "new_version=$(echo ${version} |  awk -F'.' '{print $1"."$2"."$3+1}' |  sed s/[.]$//)" >> "$GITHUB_ENV"
 
       - name: update jar version to next patch
         run: mvn versions:set -DnewVersion=$new_version
