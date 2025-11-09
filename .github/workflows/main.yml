@@ -13,6 +13,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin' 
           cache: maven
+        working-directory: ./my-app
       - name: Export the new jar version
         run: |
           version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
