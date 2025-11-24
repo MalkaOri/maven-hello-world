@@ -12,5 +12,6 @@ RUN mvn -B package --file pom.xml
 #Stage 3: Run the compiled projectRUN echo "Run the compiled project"
 RUN echo $version
 FROM openjdk:17.0.1-jdk-slim
+ARG version
 COPY --from=build target/myapp-$version.jar myapp-$version.jar
 ENTRYPOINT ["java", "-jar", "myapp.jar"]
