@@ -1,7 +1,7 @@
 #Copy the work enviroment & Build the maven project
 FROM maven:3.8.5-openjdk-17 AS builder
 WORKDIR /myapp
-COPY pom.xml
+COPY pom.xml ./
 COPY src ./src
 RUN mvn -B package --file pom.xml
 
