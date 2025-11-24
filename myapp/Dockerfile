@@ -10,9 +10,7 @@ RUN mvn versions:set -DnewVersion=$version
 RUN mvn -B package --file pom.xml
 
 #Stage 3: Run the compiled projectRUN echo "Run the compiled project"
-WORKDIR /myapp
-RUN echo $version
 FROM openjdk:17.0.1-jdk-slim
 ARG version
-COPY --from=build target/myapp-$version.jar myapp-$version.jar
+COPY --from=build /myapp/target/myapp-$version.jar myapp-$version.jar
 ENTRYPOINT ["java", "-jar", "myapp.jar"]
