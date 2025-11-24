@@ -8,5 +8,5 @@ RUN mvn -B package --file pom.xml
 #Run the compiled project
 FROM openjdk:17.0.1-jdk-slim
 ARG version
-COPY target/myapp-$version.jar myapp-$version.jar
+COPY --from=build target/myapp-$version.jar myapp-$version.jar
 ENTRYPOINT ["java", "-jar", "myapp.jar"]
