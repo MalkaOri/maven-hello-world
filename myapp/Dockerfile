@@ -1,5 +1,5 @@
 #Copy the work enviroment & Build the maven project
-FROM maven:3.8.5-openjdk-17 AS builder
+FROM maven:3.8.5-openjdk-17 AS build
 WORKDIR /myapp
 COPY pom.xml ./
 COPY src ./src
