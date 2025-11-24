@@ -1,4 +1,0 @@
-FROM openjdk:17
-WORKDIR /target
-COPY target/myapp-$new_version.jar myapp-$new_version.jar
-ENTRYPOINT ["java", "-jar", "myapp.jar"]
