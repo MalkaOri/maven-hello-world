@@ -1,4 +1,4 @@
-#Stage 1 : Import the work enviroment & update the project version RUN echo" Stage 1 : Import the work enviroment & update the project version "
+#Stage 1 : Import the work enviroment & update the project version 
 FROM maven:3.8.5-openjdk-17 AS build
 WORKDIR /myapp
 COPY pom.xml ./
